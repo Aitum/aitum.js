@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from 'axios';
+import { AxiosInstance } from 'axios';
 import { IGlobalVariable } from '../interfaces/IGlobalVariable';
 import { IRule } from '../interfaces/IRule';
 import { apiErrorHandler } from '../Utils';
