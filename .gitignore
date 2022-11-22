@@ -106,3 +106,4 @@ dist
 .idea
 ./lib
 /lib/
+.DS_Store
