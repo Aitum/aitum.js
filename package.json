@@ -1,0 +1,15 @@
+{
+  "name": "aitum.js",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "repository": "https://github.com/Aitum/aitum.js.git",
+  "author": "David Marsh <david@aitum.tv>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "axios": "^1.1.3"
+  }
+}
