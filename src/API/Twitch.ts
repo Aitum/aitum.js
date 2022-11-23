@@ -10,7 +10,7 @@ export class Twitch {
   /**
    * Get hype train
    *
-   * @description Get hype train info
+   * @description Get the current Hype Train
    */
   public async getHypeTrain(): Promise<IHypeTrainInfo> {
     try {
@@ -24,7 +24,7 @@ export class Twitch {
   /**
    * Get poll
    *
-   * @description Get the data from a poll
+   * @description Get the current poll
    */
   public async getPoll(): Promise<IPollInfo> {
     try {

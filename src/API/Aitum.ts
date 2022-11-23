@@ -12,7 +12,7 @@ export class Aitum {
   /**
    * Get rules
    *
-   * @description Get all rules from Aitum
+   * @description Get all Aitum rules
    */
   public async getRules(): Promise<Array<IRule>> {
     try {
@@ -33,7 +33,7 @@ export class Aitum {
   /**
    * Trigger a rule
    *
-   * @description Trigger a rule
+   * @description Trigger an Aitum rule
    *
    * @param rule - Rule to trigger
    */
@@ -52,7 +52,7 @@ export class Aitum {
   /**
    * Get global variables
    *
-   * @description Get all global variables from Aitum
+   * @description Get all global variables
    *
    * @returns
    */
