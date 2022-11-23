@@ -28,5 +28,8 @@
     "build": "tsup",
     "clean": "rimraf node_modules dist",
     "dev": "tsup --watch"
-  }
+  },
+  "prettier": {
+		"singleQuote": true
+	}
 }
