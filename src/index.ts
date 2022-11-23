@@ -1,1 +1,1 @@
-export { AitumAPIClient } from "./AitumAPIClient";
+export { AitumAPIClient } from './AitumAPIClient';

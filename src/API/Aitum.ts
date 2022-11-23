@@ -1,8 +1,8 @@
-import { AxiosInstance } from "axios";
+import { AxiosInstance } from 'axios';
 
-import { apiErrorHandler } from "../Utils";
-import { IGlobalVariable } from "../interfaces/IGlobalVariable";
-import { IRule } from "../interfaces/IRule";
+import { apiErrorHandler } from '../Utils';
+import { IGlobalVariable } from '../interfaces/IGlobalVariable';
+import { IRule } from '../interfaces/IRule';
 
 export class Aitum {
   public constructor(private readonly base: AxiosInstance) {}
@@ -14,11 +14,11 @@ export class Aitum {
    *
    * @description Get all Aitum rules
    */
-  public async getRules(): Promise<Array<IRule>> {
+  public async getRules(): Promise<IRule[]> {
     try {
-      const call = await this.base.get("aitum/rules");
+      const call = await this.base.get('aitum/rules');
 
-      const rules = new Array<IRule>();
+      let rules: IRule[] = [];
 
       for (const [k, v] of Object.entries(call.data.data)) {
         rules.push({ name: k, id: v as string });
@@ -39,7 +39,7 @@ export class Aitum {
    */
   public async triggerRule(rule: IRule | string): Promise<void> {
     try {
-      const ruleId = typeof rule === "object" ? rule.id : rule;
+      const ruleId = typeof rule === 'object' ? rule.id : rule;
 
       await this.base.get(`aitum/rules/${ruleId}`);
     } catch (err: any) {
@@ -58,13 +58,13 @@ export class Aitum {
    */
   public async getGlobalVariables(): Promise<IGlobalVariable[]> {
     try {
-      const call = await this.base.get("aitum/state");
+      const call = await this.base.get('aitum/state');
 
-      const vars = new Array<IGlobalVariable>();
+      let vars: IGlobalVariable[] = [];
 
       for (const state of call.data.data) {
         vars.push({
-          id: state["_id"],
+          id: state['_id'],
           name: state.name,
           type: state.type,
           value: state.value,

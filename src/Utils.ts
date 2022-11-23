@@ -1,6 +1,6 @@
 // TODO: Error handler
 
-import type { AxiosError } from "axios";
+import type { AxiosError } from 'axios';
 
 /**
  * API error handler
@@ -15,9 +15,9 @@ export function apiErrorHandler(error: AxiosError): string {
   if (error.response) {
     return (error.response as { data: { error: string } }).data.error;
   } else if (error.request) {
-    return "Request timed out, please ensure Aitum is running.";
+    return 'Request timed out, please ensure Aitum is running.';
   } else {
-    console.log("aitum.js request error", error.message);
+    console.log('aitum.js request error', error.message);
     return error.message;
   }
 }
