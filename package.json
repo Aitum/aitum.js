@@ -1,18 +1,23 @@
 {
   "name": "aitum.js",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "keywords": [
     "aitum",
     "streaming",
     "twitch"
   ],
   "main": "lib/index.js",
+  "description": "API Wrapper library for Aitum's Public API",
   "types": "lib/index.d.ts",
   "files": [
     "/lib"
   ],
   "repository": "https://github.com/Aitum/aitum.js.git",
   "author": "David Marsh <david@aitum.tv>",
+  "contributors": [{
+    "name": "Nuro",
+    "url": "https://github.com/NuroDev"
+  }],
   "license": "MIT",
   "private": false,
   "devDependencies": {
