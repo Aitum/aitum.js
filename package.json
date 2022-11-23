@@ -16,18 +16,22 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
-    "npm-run-all": "^4.1.5",
+    "@types/node": "^18.11.9",
+    "prettier": "^2.8.0",
     "rimraf": "^3.0.2",
-    "run-s": "^0.0.0",
+    "tsup": "^6.5.0",
     "typescript": "^4.9.3"
   },
   "dependencies": {
     "axios": "^1.1.3"
   },
   "scripts": {
-    "build:clean": "rimraf ./lib/* tsconfig.tsbuildinfo",
-    "build:wait": "sleep 1",
-    "build:generate": "./node_modules/typescript/bin/tsc",
-    "build": "run-s build:*"
+    "build": "tsup",
+    "clean": "rimraf node_modules dist",
+    "dev": "tsup --watch",
+    "format": "prettier --write \"**/*.{js,json,ts}\""
+  },
+  "prettier": {
+    "singleQuote": true
   }
 }
