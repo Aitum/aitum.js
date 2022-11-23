@@ -30,6 +30,6 @@
     "dev": "tsup --watch"
   },
   "prettier": {
-		"singleQuote": true
-	}
+    "singleQuote": true
+  }
 }
