@@ -1,6 +1,1 @@
-import { AitumAPIClient } from './AitumAPIClient';
-
-export {
-  AitumAPIClient,
-};
-
+export { AitumAPIClient } from './AitumAPIClient';
