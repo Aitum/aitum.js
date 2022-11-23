@@ -1,8 +1,8 @@
 export interface IPollInfo {
   active: boolean;
-  title: string;
-  choices: {
+  choices: Array<{
     text: string;
     votes: number;
-  }[];
+  }>;
+  title: string;
 }
