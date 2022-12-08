@@ -1,4 +1,5 @@
 import { AxiosInstance } from 'axios';
+import { Host } from '../classes';
 
 import { apiErrorHandler } from '../Utils';
 import { IGlobalVariable } from '../interfaces/IGlobalVariable';
@@ -79,4 +80,27 @@ export class Aitum {
 
   // Set global var
   // TODO
+
+  /* Info Getters */
+
+  /**
+   * Get hosts
+   *
+   * @description Get all connected Aitum hosts
+   */
+  public async getHosts(): Promise<Host[]> {
+    try {
+      const call = await this.base.get('hosts');
+
+      let hosts: Host[] = [];
+
+      for (const host of call.data.data) {
+        hosts.push(new Host(host.id, host.name, host.type));
+      }
+
+      return hosts;
+    } catch (err: any) {
+      throw new Error(apiErrorHandler(err));
+    }
+  }
 }
