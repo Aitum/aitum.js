@@ -8,7 +8,12 @@ import { AllDevices } from '../types/AllDevices';
 import { apiErrorHandler, deviceCreator } from '../Utils';
 import { IGlobalVariable } from '../interfaces/IGlobalVariable';
 import { IRule } from '../interfaces/IRule';
+import { DeviceEnumToClassReturnType } from '../types/DeviceEnumToClassReturnType';
 
+/**
+ * Class for Aitum-related routes on the Aitum Public API.
+ * @see {@link https://docs.aitum.tv/api/aitum}
+ */
 export class Aitum {
   /* Rules calls */
 
@@ -21,9 +26,8 @@ export class Aitum {
   }
 
   /**
-   * Get rules
-   *
-   * @description Get all Aitum rules
+   * Get all Aitum rules.
+   * @returns {Promise<IRule[]>}
    */
   public async getRules(): Promise<IRule[]> {
     try {
@@ -42,11 +46,9 @@ export class Aitum {
   }
 
   /**
-   * Trigger a rule
-   *
-   * @description Trigger an Aitum rule
-   *
-   * @param rule - Rule to trigger
+   * Trigger an Aitum rule.
+   * @param {IRule|string} rule - Rule to trigger.
+   * @returns {Promise<void>}
    */
   public async triggerRule(rule: IRule | string): Promise<void> {
     try {
@@ -82,11 +84,8 @@ export class Aitum {
   /* Variable calls */
 
   /**
-   * Get global variables
-   *
-   * @description Get all global variables
-   *
-   * @returns
+   * Get all global variables inside of Aitum.
+   * @returns {Promise<IGlobalVariable[]>}
    */
   public async getGlobalVariables(): Promise<IGlobalVariable[]> {
     try {
@@ -115,9 +114,8 @@ export class Aitum {
   /* Info Getters */
 
   /**
-   * Get hosts
-   *
-   * @description Get all connected Aitum hosts
+   * Get all connected Aitum hosts.
+   * @returns {Promise<Host[]>}
    */
   public async getHosts(): Promise<Host[]> {
     try {

@@ -1,9 +1,12 @@
 import { AxiosInstance } from 'axios';
 
 import { apiErrorHandler } from '../Utils';
-import { IHypeTrainInfo } from '../interfaces/IHypeTrainInfo';
-import { IPollInfo } from '../interfaces/IPollInfo';
+import { IHypeTrainInfo, IPollInfo } from '../interfaces';
 
+/**
+ * Class for Twitch-related routes on the Aitum Public API.
+ * @see {@link https://docs.aitum.tv/api/twitch}
+ */
 export class Twitch {
   private constructor(private base: AxiosInstance) {}
   private static instance: Twitch = null;
@@ -14,9 +17,8 @@ export class Twitch {
   }
 
   /**
-   * Get hype train
-   *
-   * @description Get the current Hype Train
+   * Get the current Twitch Hype Train.
+   * @returns {Promise<IHypeTrainInfo>}
    */
   public async getHypeTrain(): Promise<IHypeTrainInfo> {
     try {
@@ -28,9 +30,8 @@ export class Twitch {
   }
 
   /**
-   * Get poll
-   *
-   * @description Get the current poll
+   * Get the current Twitch poll.
+   * @returns {Promise<IPollInfo>}
    */
   public async getPoll(): Promise<IPollInfo> {
     try {

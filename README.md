@@ -38,7 +38,7 @@ import { DeviceType } from 'aitum.js/lib/enums';
 
 // Instantiate the library
 // You can optionally provide an IP address to the machine running Aitum. It will default to 127.0.0.1
-const client = new AitumAPIClient(); 
+const lib = AitumJS().get(); 
 
 // Example: Trigger an Aitum rule using its ID
 

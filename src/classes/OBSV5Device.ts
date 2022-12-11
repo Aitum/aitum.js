@@ -5,6 +5,7 @@ import { BaseDevice } from './BaseDevice';
 /**
  * Class representing an OBS V5 device. This class should not be instantiated manually.
  * @extends BaseDevice
+ * @see {@link https://docs.aitum.tv/devices/obs}
  */
 export class OBSV5Device extends BaseDevice {
 

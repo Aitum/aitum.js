@@ -3,6 +3,7 @@ import { DeviceType } from '../enums/DeviceType';
 
 /**
  * Abstract class representing a device.
+ * @see {@link https://docs.aitum.tv/en/devices}
  */
 export abstract class BaseDevice {
 

@@ -1,3 +1,7 @@
+/**
+ * Class representing a rule in Aitum.
+ * @see {@link https://docs.aitum.tv/en/rules}
+ */
 export class Rule {
 
   public constructor(public readonly name: string, public readonly id: string) {}

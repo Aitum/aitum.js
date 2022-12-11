@@ -6,6 +6,7 @@ import { Rule } from './Rule';
 /**
  * Class representing an Aitum device. This class should not be instantiated manually.
  * @extends BaseDevice
+ * @see {@link https://docs.aitum.tv/en/devices/aitum}
  */
 export class AitumDevice extends BaseDevice {
 
