@@ -1,3 +1,4 @@
+import { AitumJS } from '../AitumJS';
 import { DeviceType } from '../enums/DeviceType';
 import { BaseDevice } from './BaseDevice';
 import { Rule } from './Rule';
@@ -22,7 +23,10 @@ export class AitumDevice extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async triggerRule(rule: string | Rule): Promise<void> {
-    // TODO
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 2,
+      rule: rule instanceof Rule ? rule : rule
+    });
   }
 
   /**
@@ -30,8 +34,12 @@ export class AitumDevice extends BaseDevice {
    * @param {string} path - The path to the sound on your filesystem.
    * @returns {Promise<void>}
    */
-  public async playSound(path: string): Promise<void> {
-    // TODO
+  public async playSound(path: string, volume: number): Promise<void> {
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 4,
+      file: path,
+      volume
+    });
   }
 
   /**
@@ -39,7 +47,9 @@ export class AitumDevice extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async stopAllSounds(): Promise<void> {
-    // TODO
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 5
+    });
   }
 
 }

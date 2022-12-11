@@ -1,6 +1,6 @@
 export class Rule {
 
-  public constructor(private readonly name: string, private readonly id: string) {}
+  public constructor(public readonly name: string, public readonly id: string) {}
 
   /**
    * Trigger rule

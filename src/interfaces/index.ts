@@ -1,6 +1,5 @@
-import { IGlobalVariable } from './IGlobalVariable';
-import { IHypeTrainInfo } from './IHypeTrainInfo';
-import { IPollInfo } from './IPollInfo';
-import { IRule } from './IRule';
-
-export type { IGlobalVariable, IHypeTrainInfo, IPollInfo, IRule };
+export type { IGlobalVariable } from './IGlobalVariable';
+export type { IHypeTrainInfo } from './IHypeTrainInfo';
+export type { IPollInfo } from './IPollInfo';
+export type { IRule } from './IRule';
+export type { IDeviceSearchParams } from './IDeviceSearchParams';

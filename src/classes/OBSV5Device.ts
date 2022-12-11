@@ -1,3 +1,4 @@
+import { AitumJS } from '../AitumJS';
 import { DeviceType } from '../enums/DeviceType';
 import { BaseDevice } from './BaseDevice';
 
@@ -19,7 +20,10 @@ export class OBSV5Device extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async changeScene(scene: string): Promise<void> {
-    // TODO
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 0,
+      scene
+    });
   }
 
   /**
@@ -30,7 +34,12 @@ export class OBSV5Device extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async changeFilterVisibility(source: string, filter: string, enabled: boolean): Promise<void> {
-   // TODO
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 1,
+      source,
+      filter,
+      enabled
+    });
   }
 
   /**
@@ -41,7 +50,12 @@ export class OBSV5Device extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async changeSceneItemVisibility(scene: string, item: string, visible: boolean): Promise<void> {
-    // TODO
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 2,
+      scene,
+      item,
+      visible
+    });
   }
 
   /**
@@ -51,7 +65,11 @@ export class OBSV5Device extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async muteAudio(input: string, mute: boolean): Promise<void> {
-    // TODO
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 3,
+      input,
+      mute
+    });
   }
 
   /**
@@ -61,7 +79,11 @@ export class OBSV5Device extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async playPauseMedia(source: string, play: boolean): Promise<void> {
-    // TODO
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 4,
+      source,
+      play
+    });
   }
 
   /**
@@ -70,7 +92,10 @@ export class OBSV5Device extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async restartMedia(source: string): Promise<void> {
-    // TODO
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 5,
+      source
+    });
   }
 
   /**
@@ -79,7 +104,10 @@ export class OBSV5Device extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async stopMedia(source: string): Promise<void> {
-    // TODO
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 6,
+      source
+    });
   }
 
   /**
@@ -88,7 +116,10 @@ export class OBSV5Device extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async nextMediaItem(source: string): Promise<void> {
-    // TODO
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 7,
+      source
+    });
   }
 
   /**
@@ -97,7 +128,10 @@ export class OBSV5Device extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async previousMediaItem(source: string): Promise<void> {
-    // TODO
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 8,
+      source
+    });
   }
 
   /**
@@ -106,7 +140,10 @@ export class OBSV5Device extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async refreshBrowserSource(source: string): Promise<void> {
-    // TODO
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 10,
+      source
+    });
   }
 
   /**
@@ -115,7 +152,10 @@ export class OBSV5Device extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async setRecording(state: boolean): Promise<void> {
-    // TODO
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 12,
+      state
+    });
   }
 
   /**
@@ -123,7 +163,9 @@ export class OBSV5Device extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async toggleRecording(): Promise<void> {
-    // TODO
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 13
+    });
   }
 
   /**
@@ -132,7 +174,10 @@ export class OBSV5Device extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async setStreaming(state: boolean): Promise<void> {
-    // TODO
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 14,
+      state
+    });
   }
 
   /**
@@ -140,7 +185,9 @@ export class OBSV5Device extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async toggleStreaming(): Promise<void> {
-    // TODO
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 15
+    });
   }
 
   /**
@@ -149,7 +196,10 @@ export class OBSV5Device extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async setReplayBuffer(state: boolean): Promise<void> {
-    // TODO
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 18,
+      state
+    });
   }
 
   /**
@@ -157,7 +207,9 @@ export class OBSV5Device extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async toggleReplayBuffer(): Promise<void> {
-    // TODO
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 19
+    });
   }
 
   /**
@@ -165,7 +217,9 @@ export class OBSV5Device extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async saveReplayBuffer(): Promise<void> {
-    // TODO
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 22
+    });
   }
 
   /**
@@ -174,7 +228,10 @@ export class OBSV5Device extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async sendCustomMessage(data: object): Promise<void> {
-    // TODO - Also stringify the data prior to api send
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 17,
+      data: JSON.stringify(data)
+    });
   }
 
   /**
@@ -187,7 +244,19 @@ export class OBSV5Device extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async setBrowserSourceProperties(source: string, options: { url?: string, fps?: number, routeAudio?: boolean }): Promise<void> {
-    // TODO - validation on number of keys > 0, spread options before send, ensure fps is int
+    // Ensure options is filled
+    if (Object.keys(options).length === 0) throw new Error('Options not specified.');
+
+    // Ensure FPS is int if used
+    if (options.hasOwnProperty('fps')) {
+      if (typeof options.fps !== 'number' || !Number.isInteger(options.fps)) throw new Error('FPS option must be an integer');
+    }
+
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 23,
+      source,
+      ...options
+    });
   }
 
   /**
@@ -199,7 +268,19 @@ export class OBSV5Device extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async setDisplaySourceProperties(source: string, options: { display?: number, showCursor?: boolean }): Promise<void> {
-    // TODO - ensure display is int, spread options
+    // Ensure options is filled
+    if (Object.keys(options).length === 0) throw new Error('Options not specified.');
+
+    // Ensure FPS is int if used
+    if (options.hasOwnProperty('display')) {
+      if (typeof options.display !== 'number' || !Number.isInteger(options.display)) throw new Error('Display option must be an integer');
+    }
+
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 25,
+      source,
+      ...options
+    });
   }
 
   /**
@@ -216,7 +297,11 @@ export class OBSV5Device extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async setTextSourceProperties(source: string, options: { text?: string, dropShadow?: boolean, outline?: boolean, antiAliasing?: boolean, wordWrap?: boolean, colour?: string, colourTwo?: string }): Promise<void> {
-    // TODO - spread options
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 24,
+      source,
+      ...options
+    });
   }
 
   /**
@@ -227,7 +312,12 @@ export class OBSV5Device extends BaseDevice {
    * @returns {Promise<void>}
    */
   public async setSourceFilterProperties(source: string, filter: string, options: object): Promise<void> {
-    // TODO - stringify options
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 26,
+      source,
+      filter,
+      options: JSON.stringify(options)
+    });
   }
 
   /**
@@ -239,6 +329,12 @@ export class OBSV5Device extends BaseDevice {
    */
   public async sendVendorRequest(vendorName: string, eventType: string, eventData?: object): Promise<void> {
     // TODO - stringify eventData
+    await AitumJS.get().aitum.triggerAction(this, {
+      type: 28,
+      vendorName,
+      eventType,
+      eventData: JSON.stringify(eventData)
+    });
   }
 
 }

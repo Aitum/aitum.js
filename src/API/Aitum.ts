@@ -1,14 +1,24 @@
-import { AxiosInstance } from 'axios';
+import { Axios, AxiosInstance } from 'axios';
 import { Host } from '../classes';
+import { BaseDevice } from '../classes/BaseDevice';
+import { DeviceType } from '../enums/DeviceType';
+import { IDeviceSearchParams } from '../interfaces/IDeviceSearchParams';
+import { AllDevices } from '../types/AllDevices';
 
-import { apiErrorHandler } from '../Utils';
+import { apiErrorHandler, deviceCreator } from '../Utils';
 import { IGlobalVariable } from '../interfaces/IGlobalVariable';
 import { IRule } from '../interfaces/IRule';
 
 export class Aitum {
-  public constructor(private readonly base: AxiosInstance) {}
-
   /* Rules calls */
+
+  private constructor(private base: AxiosInstance) {}
+  private static instance: Aitum = null;
+
+  public static get(base?: AxiosInstance): Aitum {
+    if (!Aitum.instance && base) Aitum.instance = new Aitum(base);
+    return Aitum.instance;
+  }
 
   /**
    * Get rules
@@ -43,6 +53,27 @@ export class Aitum {
       const ruleId = typeof rule === 'object' ? rule.id : rule;
 
       await this.base.get(`aitum/rules/${ruleId}`);
+    } catch (err: any) {
+      throw new Error(apiErrorHandler(err));
+    }
+  }
+
+  /**
+   * Trigger an Aitum action.
+   * @param {BaseDevice} device - Device to trigger the action on.
+   * @param {object} data - Action data.
+   * @returns {Promise<void>}
+   */
+  public async triggerAction(device: BaseDevice, data: object): Promise<void> {
+    try {
+      await this.base.post(`devices`, {
+        device: {
+          host: device.host,
+          type: device.type,
+          name: device.name
+        },
+        data
+      });
     } catch (err: any) {
       throw new Error(apiErrorHandler(err));
     }
@@ -99,6 +130,43 @@ export class Aitum {
       }
 
       return hosts;
+    } catch (err: any) {
+      throw new Error(apiErrorHandler(err));
+    }
+  }
+
+  /**
+   * Get devices.
+   * @returns {Promise<AllDevices[]>}
+   */
+  public async getDevices<T extends DeviceType>(type: T, filters?: Partial<IDeviceSearchParams>): Promise<InstanceType<DeviceEnumToClassReturnType<T>>[]> {
+    try {
+      const call = await this.base.get('devices');
+
+      let devices: InstanceType<DeviceEnumToClassReturnType<T>>[] = [];
+
+      for (const device of call.data.data) {
+
+        // If filters are provided, let's check them
+        if (filters) {
+          if (filters.hasOwnProperty('host')) {
+            if (filters.host !== device.host) continue;
+          }
+
+          if (filters.hasOwnProperty('type')) {
+            if (filters.type !== device.type) continue;
+          }
+
+          if (filters.hasOwnProperty('name')) {
+            if (filters.name !== device.name) continue;
+          }
+        }
+
+        const parsed = deviceCreator(device.name, device.type, device.host);
+        if (parsed) devices.push(parsed as InstanceType<DeviceEnumToClassReturnType<T>>);
+      }
+
+      return devices;
     } catch (err: any) {
       throw new Error(apiErrorHandler(err));
     }

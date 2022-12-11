@@ -5,7 +5,13 @@ import { IHypeTrainInfo } from '../interfaces/IHypeTrainInfo';
 import { IPollInfo } from '../interfaces/IPollInfo';
 
 export class Twitch {
-  public constructor(private readonly base: AxiosInstance) {}
+  private constructor(private base: AxiosInstance) {}
+  private static instance: Twitch = null;
+
+  public static get(base?: AxiosInstance): Twitch {
+    if (!Twitch.instance && base) Twitch.instance = new Twitch(base);
+    return Twitch.instance;
+  }
 
   /**
    * Get hype train

@@ -1,6 +1,6 @@
 {
   "name": "aitum.js",
-  "version": "1.0.5",
+  "version": "2.0.0-beta.1",
   "keywords": [
     "aitum",
     "streaming",
@@ -14,10 +14,12 @@
   ],
   "repository": "https://github.com/Aitum/aitum.js.git",
   "author": "David Marsh <david@aitum.tv>",
-  "contributors": [{
-    "name": "Nuro",
-    "url": "https://github.com/NuroDev"
-  }],
+  "contributors": [
+    {
+      "name": "Nuro",
+      "url": "https://github.com/NuroDev"
+    }
+  ],
   "license": "MIT",
   "private": false,
   "devDependencies": {
@@ -28,7 +30,8 @@
     "typescript": "^4.9.3"
   },
   "dependencies": {
-    "axios": "^1.1.3"
+    "axios": "^1.1.3",
+    "chalk": "4.1.2"
   },
   "scripts": {
     "build": "tsup",

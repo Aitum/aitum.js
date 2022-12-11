@@ -19,7 +19,7 @@
     "preserveWatchOutput": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "target": "ES2021"
   },
   "include": ["./src/**/*.ts"],
