@@ -1,4 +1,4 @@
-import { DeviceType } from '../enums/DeviceType';
+import { DeviceType } from '~/enums/DeviceType';
 
 export interface IDeviceSearchParams {
   host: string;

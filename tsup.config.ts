@@ -6,8 +6,9 @@ export default defineConfig({
   clean: true,
   dts: true,
   entry: {
-    index: 'src/AitumJS.ts',
+    index: 'src/index.ts',
     interfaces: 'src/interfaces/index.ts',
+    inputs: 'src/inputs/index.ts',
     enums: 'src/enums/index.ts',
     classes: 'src/classes/index.ts'
   },
