@@ -137,10 +137,12 @@ TODO
 * `setColour(colour: string)` - Set the light colour
 * `setColourTemperature(temperature: number, brightness: number)` - Set the light colour temperature
 
-
 #### OSC
-TODO
-
+* `float(address: string, value: number)` - Send a Float
+* `integer(address: string, value: number)` - Send a Integer
+* `string(address: string, value: string)` - Send a String
+* `boolean(address: string, value: boolean)` - Send a Boolean
+* `null(address: string)` - Send a Null
 
 ### Rules
 TODO
