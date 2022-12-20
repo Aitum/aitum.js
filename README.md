@@ -38,7 +38,7 @@ import { DeviceType } from 'aitum.js/lib/enums';
 
 // Instantiate the library
 // You can optionally provide an IP address to the machine running Aitum. It will default to 127.0.0.1
-const lib = AitumJS().get(); 
+const lib = AitumJS.get(); 
 
 // Example: Trigger an Aitum rule using its ID
 
@@ -72,7 +72,7 @@ import { DeviceType } from 'aitum.js/lib/enums';
 
 // Instantiate the library
 // You can optionally provide an IP address to the machine running Aitum. It will default to 127.0.0.1
-const lib = AitumJS().get();
+const lib = AitumJS.get();
 
 // Filter all devices by the type we want to find
 const allOBSDevices = await lib.getDevices(DeviceType.OBSV5);
@@ -107,7 +107,22 @@ const singleOBSDevice = (await lib.getDevices(DeviceType.OBSV5, { host: 'aitum-h
 * `sendVendorRequest(vendorName: string, eventType: string, eventData?: object)` - Send vendor request
 
 #### MIDI
-TODO
+* `noteOn(channel: number, note: number, velocity: number)` - Send a Note On
+* `noteOff(channel: number, note: number, velocity: number)` - Send a Note Off
+* `noteOnOff(channel: number, note: number, velocity: number, hold: number)` - Send a Note On followed by a Note Off
+* `controlChange(channel: number, value: number, controller: number)` - Send a Control Change
+* `program(channel: number, number: number)` - Send a Program
+* `polyAftertouch(channel: number, note: number, velocity: number)` - Send a Poly Aftertouch
+* `channelAftertouch(channel: number, pressure: number)` - Send a Channel Aftertouch
+* `pitch(channel: number, value: number)` - Send a Pitch
+* `position(value: number)` - Send a Position
+* `select(song: number)` - Send a Select
+* `start()` - Send a Start
+* `continue()` - Send a Continue
+* `stop()` - Send a Stop
+* `activeSense()` - Send an Active Sense
+* `reset()` - Send a Reset
+
 
 #### TWITCH
 TODO 
