@@ -133,7 +133,10 @@ TODO
 * `stopAllSounds()` - Stop all sounds playing in Aitum
 
 #### ELGATO
-TODO
+* `setState(on: boolean)` - Set the light state
+* `setColour(colour: string)` - Set the light colour
+* `setColourTemperature(temperature: number, brightness: number)` - Set the light colour temperature
+
 
 #### OSC
 TODO

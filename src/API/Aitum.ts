@@ -141,6 +141,8 @@ export class Aitum {
     try {
       const call = await this.base.get('devices');
 
+      filters = filters ? {...filters, type } : { type };
+
       let devices: InstanceType<DeviceEnumToClassReturnType<T>>[] = [];
 
       for (const device of call.data.data) {
@@ -160,7 +162,7 @@ export class Aitum {
           }
         }
 
-        const parsed = deviceCreator(device.name, device.type, device.host);
+        const parsed = deviceCreator(device.name, device.type, device.host, device);
         if (parsed) devices.push(parsed as InstanceType<DeviceEnumToClassReturnType<T>>);
       }
 

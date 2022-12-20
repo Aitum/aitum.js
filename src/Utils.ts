@@ -1,4 +1,5 @@
 import type { AxiosError } from 'axios';
+import { ElgatoColourMode } from '~/enums';
 import { AitumDevice } from './classes/AitumDevice';
 import { ElgatoDevice } from './classes/ElgatoDevice';
 import { MIDIDevice } from './classes/MIDIDevice';
@@ -28,7 +29,7 @@ export function apiErrorHandler(error: AxiosError): string {
   }
 }
 
-export function deviceCreator<T extends DeviceType>(name: string, type: T, host: string): InstanceType<DeviceEnumToClassReturnType<T>> {
+export function deviceCreator<T extends DeviceType>(name: string, type: T, host: string, fullDevice: object): InstanceType<DeviceEnumToClassReturnType<T>> {
   switch (type) {
     case DeviceType.OBSV5:
       return new OBSV5Device(name, host) as InstanceType<DeviceEnumToClassReturnType<T>>;
@@ -39,7 +40,7 @@ export function deviceCreator<T extends DeviceType>(name: string, type: T, host:
     case DeviceType.AITUM:
       return new AitumDevice(name, host) as InstanceType<DeviceEnumToClassReturnType<T>>;
     case DeviceType.ELGATO:
-      return new ElgatoDevice(name, host) as InstanceType<DeviceEnumToClassReturnType<T>>;
+      return new ElgatoDevice(name, host, fullDevice['colourMode'] as ElgatoColourMode) as InstanceType<DeviceEnumToClassReturnType<T>>;
     case DeviceType.OSC:
       return new OSCDevice(name, host) as InstanceType<DeviceEnumToClassReturnType<T>>;
     default:
