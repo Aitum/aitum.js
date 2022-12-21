@@ -5,6 +5,8 @@
 
 import axios, { AxiosInstance } from 'axios';
 import chalk from 'chalk';
+import { Redemption } from '~/classes/Redemption';
+import { RedemptionGroup } from '~/classes/RedemptionGroup';
 
 import { Aitum } from './API/Aitum';
 import { Twitch } from './API/Twitch';
@@ -38,9 +40,15 @@ export class AitumJS {
   }
 
   public async getRules(): Promise<Rule[]> {
-    // return this.aitum.getRules();
-    console.log(`${chalk.red.bold('Aitum.JS')}: Rules are currently not implemented and will be added in a further release.`);
-    return []; // TODO
+    return this.aitum.getRules();
+  }
+
+  public async getRedemptions(): Promise<Redemption[]> {
+    return this.twitch.getRedemptions();
+  }
+
+  public async getRedemptionGroups(): Promise<RedemptionGroup[]> {
+    return this.twitch.getRedemptionGroups();
   }
 
   public async getHosts(): Promise<Host[]> {

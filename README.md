@@ -54,17 +54,17 @@ const obsDevice = (await lib.getDevices(DeviceType.OBS))[0];
 await obsDevice.changeScene('my awesome scene');
 ```
 
-## Methods
+## Usage
 
 **NOTE: REWRITE IN PROGRESS, BELOW IS NOT COMPLETE AND MAY BE INCORRECT**
 
-The methods in this library correspond to the methods listed in the [Public API documentation](https://docs.aitum.tv/en/api).
+The methods in this library mostly correspond to the methods listed in the [Public API documentation](https://docs.aitum.tv/en/api).
 
 ### Devices
 
 #### Getting Devices
 
-There are multiple ways to filter 
+There are multiple ways to filter down to get a single device, below are a few examples:
 
 ```ts
 import { AitumJS } from 'aitum.js';
@@ -82,6 +82,10 @@ const singleOBSDevice = (await lib.getDevices(DeviceType.OBSV5, { host: 'aitum-h
 ```
 
 #### OBS (Websocket 5+)
+
+For interfacing with OBS (WS 5 and later) devices.
+
+##### Methods
 * `changeScene(scene: string)` - Change the current OBS scene
 * `changeFilterVisibility(source: string, filter: string, enabled: boolean)` - Change a source filter's visibility
 * `changeSceneItemVisibility(scene: string, item: string, visible: boolean)` - Change the visibility of a specific source in a scene
@@ -107,6 +111,10 @@ const singleOBSDevice = (await lib.getDevices(DeviceType.OBSV5, { host: 'aitum-h
 * `sendVendorRequest(vendorName: string, eventType: string, eventData?: object)` - Send vendor request
 
 #### MIDI
+
+For interfacing with MIDI devices.
+
+##### Methods
 * `noteOn(channel: number, note: number, velocity: number)` - Send a Note On
 * `noteOff(channel: number, note: number, velocity: number)` - Send a Note Off
 * `noteOnOff(channel: number, note: number, velocity: number, hold: number)` - Send a Note On followed by a Note Off
@@ -125,6 +133,12 @@ const singleOBSDevice = (await lib.getDevices(DeviceType.OBSV5, { host: 'aitum-h
 
 
 #### TWITCH
+
+For interfacing with Twitch.
+
+If you're looking for how to interact with Twitch Redemptions, please check [here](#redemptions).
+
+##### Methods
 * `startCommercial(length: number)` - Start a Commercial
 * `createStreamMarker()` - Create a Stream Marker
 * `startPoll(title: string, duration: number, choices: string[], pointsVoting = false, pointsPerVote?: number)` - Starts a new Poll
@@ -145,24 +159,73 @@ const singleOBSDevice = (await lib.getDevices(DeviceType.OBSV5, { host: 'aitum-h
 * `setTitle(title: string)` - Sets the stream title
 
 #### AITUM
+
+For interfacing with Aitum's in built tools.
+
+##### Methods
 * `triggerRule(rule: string | Rule)` - Trigger a rule in Aitum. (Note: When triggering a rule with this method, any triggers and checks in the rule are ignored, and the actions are immediately executed)
 * `playSound(path: string, volume: number)` - Play a sound in Aitum
 * `stopAllSounds()` - Stop all sounds playing in Aitum
 
 #### ELGATO
+
+For interfacing with Elgato Key Lights & Light Strips.
+
+##### Methods
 * `setState(on: boolean)` - Set the light state
 * `setColour(colour: string)` - Set the light colour
 * `setColourTemperature(temperature: number, brightness: number)` - Set the light colour temperature
 
 #### OSC
+
+For interfacing with OSC devices.
+
+##### Methods
 * `float(address: string, value: number)` - Send a Float
 * `integer(address: string, value: number)` - Send a Integer
 * `string(address: string, value: string)` - Send a String
 * `boolean(address: string, value: boolean)` - Send a Boolean
 * `null(address: string)` - Send a Null
 
+
+### <a name="redemptions"></a> Twitch Redemptions
+
+#### Redemptions
+
+##### Getting Redemptions
+
+Use your AitumJS instance to get Redemptions, e.g.
+```ts
+await AitumJS.get().getRedemptions();
+```
+
+##### Methods
+* `update(data: Partial<ITwitchRedemption>)` - Update a Redemption
+
+#### Redemption Groups
+
+##### Getting Redemption Groups
+
+Use your AitumJS instance to get Redemption Groups, e.g.
+```ts
+await AitumJS.get().getRedemptionGroups();
+```
+
+##### Methods
+* `getRedemptions()` - Get all Redemptions in this Group
+* `enable()` - Enable the Redemption Group
+* `disable()` - Disable the Redemption Group
+
 ### Rules
-TODO
+##### Getting Rules
+
+Use your AitumJS instance to get Rules, e.g.
+```ts
+await AitumJS.get().getRules();
+```
+
+##### Methods
+* `trigger()` - Trigger the rule
 
 ### Global Variables
 TODO
@@ -175,8 +238,16 @@ TODO - In built logger
 #### HTTP Calls
 TODO - Easy access to axios
 
+##### Get calls
+
+##### Post calls
+
+##### Put calls
+
+##### Delete calls
+
 #### JSON Support
 TODO - Examples of how to serialise and deserialise JSON in JS
 
 ## TypeScript support
-This library is designed with TypeScript in mind, so provides various TypeScript interface definitions for objects returned by methods in this library. You can import them from `./interfaces/`.
+This library is designed with TypeScript in mind, so provides various TypeScript interface definitions for objects returned by methods in this library. You can import them from `aitum.js/lib/interfaces/`.

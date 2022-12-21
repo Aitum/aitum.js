@@ -1,4 +1,6 @@
 import { AxiosInstance } from 'axios';
+import { Redemption } from '~/classes/Redemption';
+import { RedemptionGroup } from '~/classes/RedemptionGroup';
 
 import { apiErrorHandler } from '../Utils';
 import { IHypeTrainInfo, IPollInfo } from '../interfaces';
@@ -37,6 +39,36 @@ export class Twitch {
     try {
       const call = await this.base.get('twitch/poll');
       return call.data.data;
+    } catch (err: any) {
+      throw new Error(apiErrorHandler(err));
+    }
+  }
+
+  /**
+   * Get redemptions that Aitum can control.
+   * @returns {Promise<Redemption[]>}
+   */
+  public async getRedemptions(): Promise<Redemption[]> {
+    try {
+      const call = await this.base.get('redemptions');
+      return call.data.data.map(rD => {
+        return new Redemption(rD.id, rD);
+      });
+    } catch (err: any) {
+      throw new Error(apiErrorHandler(err));
+    }
+  }
+
+  /**
+   * Get redemptions that Aitum can control.
+   * @returns {Promise<Redemption[]>}
+   */
+  public async getRedemptionGroups(): Promise<RedemptionGroup[]> {
+    try {
+      const call = await this.base.get('redemptions/groups');
+      return call.data.data.map(rG => {
+        return new RedemptionGroup(rG.id, rG.name, rG.redemptions, rG.enabled);
+      });
     } catch (err: any) {
       throw new Error(apiErrorHandler(err));
     }

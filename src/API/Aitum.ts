@@ -1,5 +1,5 @@
 import { Axios, AxiosInstance } from 'axios';
-import { Host } from '../classes';
+import { Host, Rule } from '../classes';
 import { BaseDevice } from '../classes/BaseDevice';
 import { DeviceType } from '../enums/DeviceType';
 import { IDeviceSearchParams } from '../interfaces/IDeviceSearchParams';
@@ -29,14 +29,14 @@ export class Aitum {
    * Get all Aitum rules.
    * @returns {Promise<IRule[]>}
    */
-  public async getRules(): Promise<IRule[]> {
+  public async getRules(): Promise<Rule[]> {
     try {
       const call = await this.base.get('aitum/rules');
 
-      let rules: IRule[] = [];
+      let rules: Rule[] = [];
 
       for (const [k, v] of Object.entries(call.data.data)) {
-        rules.push({ name: k, id: v as string });
+        rules.push(new Rule(k, v as string));
       }
 
       return rules;
