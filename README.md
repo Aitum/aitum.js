@@ -125,7 +125,24 @@ const singleOBSDevice = (await lib.getDevices(DeviceType.OBSV5, { host: 'aitum-h
 
 
 #### TWITCH
-TODO 
+* `startCommercial(length: number)` - Start a Commercial
+* `createStreamMarker()` - Create a Stream Marker
+* `startPoll(title: string, duration: number, choices: string[], pointsVoting = false, pointsPerVote?: number)` - Starts a new Poll
+* `endPoll()` - Ends a poll if one is active
+* `getPoll()` - Gets the active poll if one is running
+* `announcement(message: string, colour?: TwitchChatAnnounceColour)` - Sends an announcement
+* `setBanStatus(ban: boolean, username: string, reason?: string)` - Ban/unbans a user
+* `emoteOnly(enabled: boolean)` - Sets emote only mode
+* `followerOnly(enabled: boolean)` - Sets follower only mode
+* `setVIP(vip: boolean, username: string)` - VIPs/unVIPs a user
+* `raid(username: string)` - Starts a raid
+* `subOnlyMode(enabled: boolean)` - Sets subscriber only mode
+* `setTimeoutStatus(timeout: boolean, username: string, reason?: string)` - Timeouts/untimeouts a user
+* `clearChat()` - Clear chat
+* `setModStatus(mod: boolean, username: string)` - Mod/unmod a user
+* `uniqueChat(enabled: boolean)` - Sets unique chat mode
+* `sendMessage(message: string)` - Sends a message as the broadcaster
+* `setTitle(title: string)` - Sets the stream title
 
 #### AITUM
 * `triggerRule(rule: string | Rule)` - Trigger a rule in Aitum. (Note: When triggering a rule with this method, any triggers and checks in the rule are ignored, and the actions are immediately executed)
