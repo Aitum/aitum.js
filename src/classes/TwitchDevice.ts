@@ -1,10 +1,7 @@
-import { options } from 'axios';
 import { AitumJS } from '~/AitumJS';
-import { Redemption } from '~/classes/Redemption';
 import { DeviceType } from '~/enums/DeviceType';
 import { TwitchChatAnnounceColour } from '~/enums/TwitchChatAnnounceColour';
 import { IPollInfo } from '~/interfaces';
-import { ITwitchRedemption } from '~/interfaces/ITwitchRedemption';
 import { BaseDevice } from './BaseDevice';
 
 /**
