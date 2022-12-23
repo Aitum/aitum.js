@@ -21,6 +21,6 @@ export class Rule {
 
     if (!device) throw new Error('Couldn\'t find Twitch device');
 
-    await device.triggerRule(this.id)
+    await device.triggerRule(this.id);
   }
 }

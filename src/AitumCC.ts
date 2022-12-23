@@ -163,6 +163,8 @@ export class AitumCC {
 
     console.log(`${chalk.blue.bold('AitumCC')}: Connected successfully!`);
     this.connected = true;
+
+    this.startHeartbeat();
   }
 
   // Webserver
@@ -208,7 +210,45 @@ export class AitumCC {
   private stopKoa(): void {}
 
   // Heartbeating
-  // TODO: heartbeating
+  private heartbeatTask: NodeJS.Timer = null;
+
+  private startHeartbeat(): void {
+    this.heartbeatTask = setInterval(() => this.heartbeatLogic(), 5e3);
+  }
+
+  private stopHeartbeat(): void {
+    clearInterval(this.heartbeatTask);
+  }
+
+  private async heartbeatLogic(): Promise<void> {
+    if (this.connected) {
+      // Check we can ping master
+      try {
+        const masterHC = await axios.get(`http://${this.masterIP}:7777/`, {
+          validateStatus: () => true,
+        });
+
+        if (masterHC.status !== 200) {
+          this.stopHeartbeat();
+          console.log(`${chalk.red.bold('AitumCC')}: Aitum instance disconnected. Attempting to reconnect.`);
+          setTimeout(() => {
+            AitumCC.instance.connected = false;
+            AitumCC.instance.connect();
+          }, 250);
+        }
+      } catch (err) {
+        this.stopHeartbeat();
+        console.log(`${chalk.red.bold('AitumCC')}: Aitum instance disconnected. Attempting to reconnect.`);
+        setTimeout(() => {
+          AitumCC.instance.connected = false;
+          AitumCC.instance.connect();
+        }, 250);
+      }
+    } else {
+      this.stopHeartbeat();
+    }
+  }
+
 
 }
 

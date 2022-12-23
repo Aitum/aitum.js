@@ -6,3 +6,4 @@ export { OSCDevice } from './OSCDevice';
 export { TwitchDevice } from './TwitchDevice';
 export { Host } from './Host';
 export { Rule } from './Rule';
+export { GlobalVariable } from './GlobalVariable';

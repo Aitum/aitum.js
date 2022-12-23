@@ -1,4 +1,6 @@
 import { Axios, AxiosInstance } from 'axios';
+import { GlobalVariable } from '~/classes/GlobalVariable';
+import { InputType } from '~/enums';
 import { Host, Rule } from '../classes';
 import { BaseDevice } from '../classes/BaseDevice';
 import { DeviceType } from '../enums/DeviceType';
@@ -85,21 +87,16 @@ export class Aitum {
 
   /**
    * Get all global variables inside of Aitum.
-   * @returns {Promise<IGlobalVariable[]>}
+   * @returns {Promise<GlobalVariable[]>}
    */
-  public async getGlobalVariables(): Promise<IGlobalVariable[]> {
+  public async getGlobalVariables(): Promise<GlobalVariable[]> {
     try {
       const call = await this.base.get('aitum/state');
 
-      let vars: IGlobalVariable[] = [];
+      let vars: GlobalVariable[] = [];
 
       for (const state of call.data.data) {
-        vars.push({
-          id: state['_id'],
-          name: state.name,
-          type: state.type,
-          value: state.value,
-        });
+        vars.push(new GlobalVariable(state['_id'], state.name, state.type as InputType, state.value));
       }
 
       return vars;
@@ -109,7 +106,19 @@ export class Aitum {
   }
 
   // Set global var
-  // TODO
+  /**
+   * Set a global variable inside of Aitum.
+   * @returns {Promise<void>}
+   */
+  public async setGlobalVariable(id: string, value: string | string[] | boolean | number): Promise<void> {
+    try {
+      await this.base.put(`aitum/state/${id}`, { value });
+    } catch (err: any) {
+      throw new Error(apiErrorHandler(err));
+    }
+  }
+
+
 
   /* Info Getters */
 

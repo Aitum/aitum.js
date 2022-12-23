@@ -10,7 +10,7 @@ import { RedemptionGroup } from '~/classes/RedemptionGroup';
 
 import { Aitum } from './API/Aitum';
 import { Twitch } from './API/Twitch';
-import { Host } from './classes';
+import { GlobalVariable, Host } from './classes';
 import { Rule } from './classes/Rule';
 import { DeviceType } from './enums/DeviceType';
 import { IDeviceSearchParams } from './interfaces/IDeviceSearchParams';
@@ -57,6 +57,10 @@ export class AitumJS {
 
   public async getDevices<T extends DeviceType>(type: T, filters?: Partial<IDeviceSearchParams>): Promise<InstanceType<DeviceEnumToClassReturnType<T>>[]> {
     return this.aitum.getDevices(type, filters);
+  }
+
+  public async getVariables(): Promise<GlobalVariable[]> {
+    return this.aitum.getGlobalVariables();
   }
 
   public async sleep(timeMs: number): Promise<void> {
