@@ -228,7 +228,13 @@ await AitumJS.get().getRules();
 * `trigger()` - Trigger the rule
 
 ### Global Variables
-TODO
+Use your AitumJS instance to get Global Variables, e.g.
+```ts
+await AitumJS.get().getVariables();
+```
+
+##### Methods
+* `update(value: string | string[] | number | boolean)` - Update the variable
 
 ### Utilities
 
