@@ -16,23 +16,6 @@ export class TwitchDevice extends BaseDevice {
 
   // Actions
 
-  // /**
-  //  * Update Redemption
-  //  *
-  //  * @param {string | Redemption} redemption - The redemption to update.
-  //  * @param {Partial<ITwitchRedemption>} options - The options to update.
-  //  * @returns {Promise<void>}
-  //  */
-  // public async updateRedemption(redemption: string | Redemption, options: Partial<ITwitchRedemption>): Promise<void> {
-  //   if (Object.keys(options).length === 0) return; // Let's not update needlessly
-  //
-  //   await AitumJS.get().aitum.triggerAction(this, {
-  //     type: 1,
-  //     ...options,
-  //     id: redemption instanceof Redemption ? redemption.id : redemption
-  //   });
-  // }
-
   /**
    * Start a Commercial
    *
@@ -243,7 +226,8 @@ export class TwitchDevice extends BaseDevice {
   public async setModStatus(mod: boolean, username: string): Promise<void> {
     await AitumJS.get().aitum.triggerAction(this, {
       type: 35,
-      username
+      username,
+      enabled: mod
     });
   }
 
@@ -285,7 +269,7 @@ export class TwitchDevice extends BaseDevice {
     if (title.length === 0 || title.length > 140) throw new Error('Titles for Twitch streams need to be between 1-140 characters');
 
     await AitumJS.get().aitum.triggerAction(this, {
-      type: 37,
+      type: 39,
       title
     });
   }

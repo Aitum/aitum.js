@@ -33,6 +33,7 @@ export class AitumDevice extends BaseDevice {
   /**
    * Play a sound in Aitum.
    * @param {string} path - The path to the sound on your filesystem.
+   * @param {number} volume - The volume level for playback (0.00 - 1.00).
    * @returns {Promise<void>}
    */
   public async playSound(path: string, volume: number): Promise<void> {
