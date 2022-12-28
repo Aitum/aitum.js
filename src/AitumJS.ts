@@ -4,7 +4,6 @@
  */
 
 import axios, { AxiosInstance } from 'axios';
-import chalk from 'chalk';
 import { Redemption } from '~/classes/Redemption';
 import { RedemptionGroup } from '~/classes/RedemptionGroup';
 
@@ -18,6 +17,7 @@ import { DeviceEnumToClassReturnType } from './types/DeviceEnumToClassReturnType
 
 export class AitumJS {
   private readonly apiBase: AxiosInstance;
+  public static http = axios;
 
   public aitum: Aitum;
   public twitch: Twitch;

@@ -1,8 +1,6 @@
 # aitum.js
 
 <p align="center">
-    <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDI1LjMuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxMDAwIDEwMDAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDEwMDAgMTAwMDsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOiNGRkZGRkY7fQo8L3N0eWxlPgo8cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjQyNi40Nyw3My4yNCA5MjYuNDYsNTczLjIyIDkyNi40Niw3My4yNCAiLz4KPHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSI3My41NCw3MTkuMzMgNTczLjUzLDIxOS4zNSA3My41NCwyMTkuMzUgIi8+Cjxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iOTI2LjQ2LDU3My4yMiAyMTkuMzcsNTczLjIyIDU3Mi45Miw5MjYuNzYgIi8+Cjwvc3ZnPgo=" />
-    <br />
     <a href="https://docs.aitum.tv/api">API Documentation</a>
     <br />
     <a href="https://www.npmjs.com/package/aitum.js">
@@ -238,22 +236,39 @@ await AitumJS.get().getVariables();
 
 ### Utilities
 
-#### Logger
-TODO - In built logger
+#### HTTP client
+For ease of use, we expose the library `axios` for you to use yourself in any HTTP requests you would like to make (even non-Aitum ones). You can call it by using:
 
-#### HTTP Calls
-TODO - Easy access to axios
+```ts
+// GET request
+const get = await AitumJS.http.get('https://api.example.com');
 
-##### Get calls
+// POST request
+const post = await AitumJS.http.post('https://api.example.com', {foo: 'bar'}, {
+  headers: {
+    'User-Agent': 'My Example User Agent'
+  }
+});
+```
 
-##### Post calls
+You can learn more about how to use `axios` and its methods on its [documentation](https://axios-http.com/docs/intro).
 
-##### Put calls
+### Further reading
+As we expect that some people using this library may be new to JavaScript/TypeScript, we recommend learning the core concepts of the language before diving straight in. We also recommend [this video series](https://www.youtube.com/watch?v=Wt47gSihb5s&list=PLJjxqjPti-LfbLhTs-XSNecyqBOtRB0fS). Here's some common mistakes:
 
-##### Delete calls
+#### JSON objects
+Everything in aitum.js is a class object. However, if you are writing your own code and making requests to other API services, you may need to serialise and de-serialise JSON. If you use our exposed HTTP client (`axios`), this should be done automatically for you. If you need to serialise and de-serialise JSON, use:
 
-#### JSON Support
-TODO - Examples of how to serialise and deserialise JSON in JS
+```ts
+// Serialise to string
+const d = {foo: "bar"};
+const asString = JSON.stringify(d); // returns {foo: "bar"} as a string
+
+// Deserialise to JS object
+const d2 = '{foo: "bar"}';
+const asObject = JSON.parse(d2); // returns {foo: "bar"} as an object
+```
+
 
 ## TypeScript support
 This library is designed with TypeScript in mind, so provides various TypeScript interface definitions for objects returned by methods in this library. You can import them from `aitum.js/lib/interfaces/`.
