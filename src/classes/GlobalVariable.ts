@@ -3,7 +3,7 @@ import { DeviceType, InputType } from '~/enums';
 
 export class GlobalVariable {
 
-  constructor(public readonly id: string, public readonly name: string, public readonly type: InputType, value: string | string[] | number | boolean) {}
+  constructor(public readonly id: string, public readonly name: string, public readonly type: InputType, public value: string | string[] | number | boolean) {}
 
   /**
    * Update variable
