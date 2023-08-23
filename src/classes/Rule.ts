@@ -19,7 +19,7 @@ export class Rule {
     const lib = AitumCC.get().getAitumJS();
     const device = (await lib.getDevices(DeviceType.AITUM))[0];
 
-    if (!device) throw new Error('Couldn\'t find Twitch device');
+    if (!device) throw new Error('Couldn\'t find Aitum device');
 
     await device.triggerRule(this.id);
   }
