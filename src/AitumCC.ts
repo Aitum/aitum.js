@@ -213,7 +213,7 @@ export class AitumCC {
   private heartbeatTask: NodeJS.Timer = null;
 
   private startHeartbeat(): void {
-    this.heartbeatTask = setInterval(() => this.heartbeatLogic(), 5e3);
+    this.heartbeatTask = setInterval(() => this.heartbeatLogic(), 1e4);
   }
 
   private stopHeartbeat(): void {
@@ -226,8 +226,9 @@ export class AitumCC {
       try {
         const masterHC = await axios.get(`http://${this.masterIP}:7777/`, {
           validateStatus: () => true,
+          timeout: 2500
         });
-
+        
         if (masterHC.status !== 200) {
           this.stopHeartbeat();
           console.log(`${chalk.red.bold('AitumCC')}: Aitum instance disconnected. Attempting to reconnect.`);
@@ -239,6 +240,7 @@ export class AitumCC {
       } catch (err) {
         this.stopHeartbeat();
         console.log(`${chalk.red.bold('AitumCC')}: Aitum instance disconnected. Attempting to reconnect.`);
+        // console.log(err);
         setTimeout(() => {
           AitumCC.instance.connected = false;
           AitumCC.instance.connect();
